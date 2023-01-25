@@ -16,6 +16,11 @@ const Form = () => {
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
+    if (!enteredName || enteredName.trim() === '' || !enteredEmail || enteredEmail.trim() === '' || !enteredEmail.includes('@') || !enteredQuantity || enteredQuantity === '' || enteredQuantity === '0' || !enteredNote || enteredNote.trim() === '') {
+      alert("Ups! Something went wrong. Please fill in all the fields of the form correctly")
+      return;
+    };
+
     console.log(enteredName, enteredEmail, enteredNote)
 
     setCompletedForm(true)
