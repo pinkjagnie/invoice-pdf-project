@@ -1,48 +1,48 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 
 import About from "./About";
+import GeneratedPdf from "./GeneratedPdf";
 
 import styles from "./form.module.css";
 
 const Form = () => {
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const noteRef = useRef(null);
+  const [enteredName, setEnteredName] = useState("");
+  const [enteredEmail, setEnteredEmail] = useState("");
+  const [enteredNote, setEnteredNote] = useState("")
+
+  const [completedForm, setCompletedForm] = useState(false);
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
-    const enteredName = nameRef.current.value;
-    const enteredEmail = emailRef.current.value;
-    const enteredNote = noteRef.current.value;
+    console.log(enteredName, enteredEmail, enteredNote)
 
-    console.log(enteredName, enteredEmail, enteredNote);
-
-    nameRef.current.value = "";
-    emailRef.current.value = "";
-    noteRef.current.value = "";
+    setCompletedForm(true)
   }
 
   return(
     <>
+    {!completedForm && <section>
       <About />
       <div>
         <form className={styles.form} onSubmit={formSubmitHandler}>
           <div className={styles.control}>
             <label htmlFor="name">Your name</label>
-            <input type="text" id="name" required ref={nameRef} />
+            <input type="text" id="name" required value={enteredName} onChange={event => setEnteredName(event.target.value)} />
           </div>
           <div className={styles.control}>
             <label htmlFor="email">Your email</label>
-            <input type="email" id="email" required ref={emailRef} />
+            <input type="email" id="email" required value={enteredEmail} onChange={event => setEnteredEmail(event.target.value)}/>
           </div>
           <div className={styles.control}>
             <label htmlFor="note">Note</label>
-            <textarea id="note" rows="4" cols="50" required ref={noteRef} />
+            <textarea id="note" rows="4" cols="50" required value={enteredNote} onChange={event => setEnteredNote(event.target.value)}/>
           </div>
           <button>Submit</button>
         </form>
       </div>
+      </section>}
+      {completedForm && <GeneratedPdf enteredName={enteredName} enteredEmail={enteredEmail} enteredNote={enteredNote} />}
     </>
   )
 };
