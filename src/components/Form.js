@@ -8,6 +8,7 @@ import styles from "./form.module.css";
 const Form = () => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredEmail, setEnteredEmail] = useState("");
+  const [enteredQuantity, setEnteredQuantity] = useState("");
   const [enteredNote, setEnteredNote] = useState("")
 
   const [completedForm, setCompletedForm] = useState(false);
@@ -35,6 +36,10 @@ const Form = () => {
             <input type="email" id="email" required value={enteredEmail} onChange={event => setEnteredEmail(event.target.value)}/>
           </div>
           <div className={styles.control}>
+            <label htmlFor="quantity">Quantity</label>
+            <input type="number" id="quantity" required value={enteredQuantity} onChange={event => setEnteredQuantity(event.target.value)} />
+          </div>
+          <div className={styles.control}>
             <label htmlFor="note">Note</label>
             <textarea id="note" rows="4" cols="50" required value={enteredNote} onChange={event => setEnteredNote(event.target.value)}/>
           </div>
@@ -42,7 +47,7 @@ const Form = () => {
         </form>
       </div>
       </section>}
-      {completedForm && <GeneratedPdf enteredName={enteredName} enteredEmail={enteredEmail} enteredNote={enteredNote} />}
+      {completedForm && <GeneratedPdf enteredName={enteredName} enteredEmail={enteredEmail} enteredQuantity={enteredQuantity} enteredNote={enteredNote} />}
     </>
   )
 };

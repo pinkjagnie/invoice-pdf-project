@@ -8,7 +8,7 @@ const GeneratedPdf = (props) => {
     <Document title={props.enteredName}>
       <Page size="A4" style={styles.page}>
         <View>
-          <Text style={styles.title}>Rachunek</Text>
+          <Text style={styles.title}>Bill</Text>
         </View>
 
         <View style={styles.section}>
@@ -21,9 +21,9 @@ const GeneratedPdf = (props) => {
         </View>
 
         <View style={styles.sectionProducts}>
-          <Text style={styles.subtitle}>Zamówione produkty:</Text>
-          <Text>Bomba atomowa</Text>
-          <Text>Liczba: 1</Text>
+          <Text style={styles.subtitle}>Ordered products:</Text>
+          <Text>Atom bomb</Text>
+          <Text>Quantity: {props.enteredQuantity}</Text>
         </View>
 
         <View style={styles.sectionNotes}>
